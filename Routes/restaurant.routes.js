@@ -7,18 +7,18 @@ const token = require('../jwttoken')
 app.use(express.json())
 
 //get all Restaurant data
-router.get('/Restaurant/get_Restaurant',db.getAllRestaurant)
+router.get('/Restaurant/get_Restaurant',token,db.getAllRestaurant)
 
 //create new Restaurant
-router.post('/Restaurant/new_Restaurant', db.createRestaurant)
+router.post('/Restaurant/new_Restaurant',token, db.createRestaurant)
 
 //find Restaurant by id
-router.get('/Restaurant/fetch_Restaurant/:id',db.findRestaurantById)
+router.get('/Restaurant/fetch_Restaurant/:id',token,db.findRestaurantById)
 
 //update Restaurant data
-router.post('/Restaurant/update_Restaurant',db.updateRestaurant)
+router.post('/Restaurant/update_Restaurant',token,db.updateRestaurant)
 
 //delete Restaurant by id
-router.get('/Restaurant/deleteRestaurant/:id',db.deleteRestaurantById)
+router.get('/Restaurant/deleteRestaurant/:id',token,db.deleteRestaurantById)
 
 module.exports = router

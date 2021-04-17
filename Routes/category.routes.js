@@ -7,18 +7,18 @@ const token = require('../jwttoken')
 app.use(express.json())
 
 //get all Category data
-router.get('/Category/get_Category',db.getAllCategory)
+router.get('/Category/get_Category',token,db.getAllCategory)
 
 //create new Category
-router.post('/Category/new_Category', db.createCategory)
+router.post('/Category/new_Category',token, db.createCategory)
 
 //find Category by id
-router.get('/Category/fetch_Category/:id',db.findCategoryById)
+router.get('/Category/fetch_Category/:id',token,db.findCategoryById)
 
 //update Category data
-router.post('/Category/update_Category',db.updateCategory)
+router.post('/Category/update_Category',token,db.updateCategory)
 
 //delete Category by id
-router.get('/Category/deleteCategory/:id',db.deleteCategoryById)
+router.get('/Category/deleteCategory/:id',token,db.deleteCategoryById)
 
 module.exports = router

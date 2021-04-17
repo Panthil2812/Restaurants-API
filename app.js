@@ -9,14 +9,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Database connection
 require('./initdb')()
 
+//User Router
 const UserRouter = require('./Routes/user.routes')
-app.use('/',UserRouter)
+app.use('/', UserRouter)
+
+//Category  Router
 const CategoryRouter = require('./Routes/category.routes')
 app.use('/',CategoryRouter)
+
+//Restaurant Router
 const RestaurantRouter = require('./Routes/restaurant.routes')
 app.use('/',RestaurantRouter)
+
+//Food  Router
 const FoodRouter = require('./Routes/food.routes')
 app.use('/',FoodRouter)
+
+//Rating Router
+const RatingRouter = require('./Routes/rating.routes')
+app.use('/',RatingRouter)
+
 //error handing
 app.use((req,res,next)=>{
     next(createError(404,"Not found"))
