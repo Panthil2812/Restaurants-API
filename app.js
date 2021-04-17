@@ -29,6 +29,10 @@ app.use('/',FoodRouter)
 const RatingRouter = require('./Routes/rating.routes')
 app.use('/',RatingRouter)
 
+//Topping Router
+const ToppingRouter = require('./Routes/topping.router')
+app.use('/',ToppingRouter)
+
 //error handing
 app.use((req,res,next)=>{
     next(createError(404,"Not found"))
