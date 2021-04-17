@@ -6,7 +6,8 @@ const RatingSchema = new Schema({
         type:String
     },
     food_id:{
-        type:String
+        type: String,
+        required:true
     },
     rating:{
         type:Number

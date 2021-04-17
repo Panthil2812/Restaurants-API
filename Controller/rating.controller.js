@@ -1,6 +1,7 @@
 const createError = require('http-errors')
 const Mongoose = require('mongoose')
 const Rating = require('../model/Rating.model')
+const Food = require('../model/Food.model')
 const jwt = require('jsonwebtoken');
 const cry = require('../crypto')
 module.exports = {
@@ -26,10 +27,24 @@ module.exports = {
              try {
                 const rest = new Rating(req.body)
                 const result = await rest.save()
+                const resultrating =await Rating.aggregate(
+                    [
+                        { $match: { food_id: req.body.food_id } },
+                        {$group:
+                        {
+                            _id: req.body.food_id,
+                            "avgQuantity": { $avg: "$rating" }
+                            //$cond: [ { $eq: [ "$food_id", req.body.food_id ] }, 30, 20 ]
+                          }
+                      }
+                    ]
+                 )
+                const rating_food_id =resultrating[0]._id
+                const food_avgrating = resultrating[0].avgQuantity
                 res.send({
                     Status :'SUCCESSFULL',
                     Message: 'successfully added Rating',
-                    Data: 1
+                    Data:  1
                 }) 
                 } catch (error) {
                     console.log(error)
