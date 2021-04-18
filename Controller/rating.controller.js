@@ -40,7 +40,11 @@ module.exports = {
                     ]
                  )
                 const rating_food_id =resultrating[0]._id
-                const food_avgrating = resultrating[0].avgQuantity
+                 const food_avgrating = resultrating[0].avgQuantity
+                 const newQuery = {avg_rating :food_avgrating}
+                 const option = {new : true}
+                 newQuery.updated_date = new Date();
+                 const result1 = await Food.findOneAndUpdate({ _id:rating_food_id},newQuery,option)
                 res.send({
                     Status :'SUCCESSFULL',
                     Message: 'successfully added Rating',
