@@ -30,7 +30,7 @@ module.exports = {
     {
         const email_id = req.body.email;
         console.log("email id : " + email_id)
-        User.countDocuments({email : email_id,d_flag:false},async function(err, c) {
+        User.countDocuments({email : email_id},async function(err, c) {
             if (c == 0)
             {
              try {
