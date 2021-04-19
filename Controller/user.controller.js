@@ -42,7 +42,7 @@ module.exports = {
                 res.send({
                     Status :'SUCCESSFULL',
                     Message: 'successfully added information',
-                    Data: result
+                    Data: 1
                 }) 
                 } catch (error) {
                     console.log(error)
@@ -126,7 +126,7 @@ module.exports = {
             res.send({
                 Status :'SUCCESSFULL',
                 Message: 'successfully deleted information ',
-                //Data: result
+                Data: 1
  
              })
         } catch (error) {

@@ -33,6 +33,11 @@ app.use('/',RatingRouter)
 const ToppingRouter = require('./Routes/topping.router')
 app.use('/',ToppingRouter)
 
+
+//Admin Router
+const AdminRouter = require('./Routes/admin.routes')
+app.use('/',AdminRouter)
+
 //error handing
 app.use((req,res,next)=>{
     next(createError(404,"Not found"))
