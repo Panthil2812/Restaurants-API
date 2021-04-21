@@ -90,6 +90,34 @@ module.exports = {
            next(error)
         }
     },
+    //search Food
+    searchFood:async (req,res,next)=>{
+        const id = req.body.category_id
+        let arr = id.split(','); 
+
+        try
+        {
+            const result = await Food.find({ category_id: { "$in":arr}},{__v:0})
+            // console.log(student)
+            if(!result){
+                throw createError(404,"Food does not exist.")
+            }
+            res.send({
+                Status :'SUCCESSFULL',
+                Message: 'successfully find Food information',
+                Data: result
+             })
+        } catch (error) {
+           // console.log(error.message) 
+           if(error instanceof Mongoose.CastError)
+           {
+               next(createError(400,"Invalid Food id"))
+               return
+           }
+       
+           next(error)
+        }
+    },
     //delete Food by id
     deleteFoodById:async (req,res,next)=>{
     

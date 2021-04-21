@@ -12,6 +12,9 @@ router.get('/Food/get_Food',token,db.getAllFood)
 //create new Food
 router.post('/Food/new_Food',token, db.createFood)
 
+//Search food by mutiple category id 
+router.post('/restaurant/search_food',token, db.searchFood)
+
 //find Food by id
 router.get('/Food/fetch_Food/:id',token,db.findFoodById)
 
