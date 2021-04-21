@@ -100,8 +100,7 @@ module.exports = {
             res.send({
                 Status :'SUCCESSFULL',
                 Message: 'successfully deleted information ',
-                //Data: result
- 
+                Data: 1 
              })
         } catch (error) {
             if(error instanceof Mongoose.CastError){

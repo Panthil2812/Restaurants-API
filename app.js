@@ -38,6 +38,10 @@ app.use('/',ToppingRouter)
 const AdminRouter = require('./Routes/admin.routes')
 app.use('/',AdminRouter)
 
+//Cart Router
+const CartRouter = require('./Routes/cart.routes')
+app.use('/',CartRouter)
+
 //error handing
 app.use((req,res,next)=>{
     next(createError(404,"Not found"))
