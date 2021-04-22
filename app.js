@@ -40,7 +40,11 @@ app.use('/',AdminRouter)
 
 //Cart Router
 const CartRouter = require('./Routes/cart.routes')
-app.use('/',CartRouter)
+app.use('/', CartRouter)
+
+//Order Router
+const OrderRouter = require('./Routes/order.routes')
+app.use('/',OrderRouter)
 
 //error handing
 app.use((req,res,next)=>{
