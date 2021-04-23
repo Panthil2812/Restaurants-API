@@ -31,6 +31,6 @@ router.get('/users/deleteUser/:id',token,db.deleteUserById)
 router.post('/authorise/forgot_password',token, db.forgetPassword)
 
 //verify otp using email 
-router.get('/authorise/verify_otp',token,db.verifyOtp)
+router.post('/authorise/verify_otp',token,db.verifyOtp)
 
 module.exports = router

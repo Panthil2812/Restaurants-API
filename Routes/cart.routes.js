@@ -13,7 +13,7 @@ router.get('/Cart/get_Cart/:id',token,db.getCartData)
 router.post('/Cart/Add_item_Cart',token, db.addCartItem)
 
 //Remove food in cart using userid and food id
-router.get('/Cart/remove_item_Cart',token,db.RemoveFoodCart)
+router.post('/Cart/remove_item_Cart',token,db.RemoveFoodCart)
 
 //Delete all food in cart
 router.get('/Cart/Delete_Cart/:id',token,db.DeleteCart)
