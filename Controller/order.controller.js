@@ -128,7 +128,7 @@ module.exports = {
 
   //update pending status using order number
   updatestatus:async (req,res,next)=>{
-        const no = req.body.order_no;
+        const no = req.params.id;
         try {
             const result = await Order.findOneAndUpdate({ order_id: no }, {order_status:1}, { new: true })
             if(!result){

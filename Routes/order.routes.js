@@ -16,7 +16,7 @@ router.post('/Order/Create_Order',token, db.createOrder)
 router.get('/Order/get_all_user_order/:id',token,db.getuserorder)
 
 // update status in order
-router.get('/Order/status_Order',token,db.updatestatus)
+router.get('/Order/status_Order/:id',token,db.updatestatus)
 
 //delete order by order_id
 router.get('/Order/Delete_Order/:id',token,db.deleteOrder)
