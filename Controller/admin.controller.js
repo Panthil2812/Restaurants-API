@@ -26,26 +26,35 @@ module.exports = {
     createAdmin: async (req, res, next) =>
     {
         const email_id = req.body.email;
-       // console.log("email id : " + email_id)
-             try {
+        // console.log("email id : " + email_id) 
+        Admin.countDocuments({ email: email_id }, async function (err, c)
+        {
+            if (c == 0)
+            {
+                try {
                 
-                req.body.password = cry.encrypt(req.body.password)
-                const user = new Admin(req.body)
+                    req.body.password = cry.encrypt(req.body.password)
+                    const user = new Admin(req.body)
+                
+                    const result = await user.save()
+                    res.send({
+                        Status :'SUCCESSFULL',
+                        Message: 'successfully added information',
+                        Data: 1
+                    }) 
+                    } catch (error) {
+                        console.log(error)
+                        if(error.name === 'ValidationError'){
+                            next(createError(422,error.message))
+                            return
+                        }
+                        next(error)
+                    }      
+            }else{
+                next(createError(500,"email already exists"))
+            }
+       });
             
-                const result = await user.save()
-                res.send({
-                    Status :'SUCCESSFULL',
-                    Message: 'successfully added information',
-                    Data: 1
-                }) 
-                } catch (error) {
-                    console.log(error)
-                    if(error.name === 'ValidationError'){
-                        next(createError(422,error.message))
-                        return
-                    }
-                    next(error)
-                }      
     },
 
     //update Admin data
@@ -107,9 +116,8 @@ module.exports = {
     
         try {
             const id = req.params.id
-            const newQuery = {d_flag:true}
-            const option = {new : true}
-            const result = await Admin.findOneAndUpdate({_id:id},newQuery,option)
+            
+            const result = await Admin.deleteOne({_id:id})
             if(!result){
                 throw createError(404,"Admin does not exist.")
             }

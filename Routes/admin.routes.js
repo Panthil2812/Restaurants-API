@@ -20,4 +20,7 @@ router.post('/Admin@/login', db.findAdmin)
 //UPDATA admin  BY ID 
 router.post('/Admin@/update_Admin',token,db.updateAdmin)
 
+//Delete admin  BY ID 
+router.get('/Admin@/Delete_Admin/:id',token,db.deleteAdminById)
+
 module.exports = router
