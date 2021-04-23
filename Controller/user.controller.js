@@ -90,7 +90,7 @@ module.exports = {
     findUserById:async (req,res,next)=>{
         const id = req.params.id
         try {
-            const result = await User.findOne({_id:id,d_flag:false},{d_flag:0,password:0})
+            const result = await User.findOne({_id:id,d_flag:false},{password:0})
             // console.log(student)
             if(!result){
                 throw createError(404,"product does not exist.")
@@ -147,7 +147,7 @@ module.exports = {
         //  console.log(userdata)
         //  res.send(userdata)
         try {
-            const result = await User.findOne({email:req.body.email},{d_flag:0})
+            const result = await User.findOne({email:req.body.email,d_flag:false},{d_flag:0})
             if(req.body.password == cry.decrypt(result.password))
             {  
                 const token = jwt.sign(JSON.parse(JSON.stringify(result)), 'shhhhh',{ expiresIn: 60*60*24});
