@@ -35,6 +35,9 @@ const RestaurantSchema = new Schema({
     num_table:{
         type:Number
     },
+    list_table:{
+        type:Array
+    },
     phone:{
         type:Number
     },

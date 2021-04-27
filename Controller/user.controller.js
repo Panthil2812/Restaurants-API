@@ -154,7 +154,8 @@ module.exports = {
                 res.send({
                     Status :'SUCCESSFULL',
                     Message: 'successfully created token',
-                    Data: token
+                    Data: token,
+                    user_details:result
                  })
             }else{
                 throw createError(400,'password is invalid')

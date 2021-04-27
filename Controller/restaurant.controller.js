@@ -25,6 +25,7 @@ module.exports = {
     {
              try {
                 const rest = new Restaurant(req.body)
+                // console.log(req.body);
                 const result = await rest.save()
                 res.send({
                     Status :'SUCCESSFULL',
@@ -114,4 +115,32 @@ module.exports = {
         }
         // res.send("deleting a single product ")
     },
+    //delete Restaurant by id
+    checkTable:async (req,res,next)=>{
+    
+        try {
+            // const table_name = req.params.table_name
+            const id = req.body.id
+            const result = await Restaurant.findOne({_id:id},{list_table:"t1"})
+            console.log(result);
+            res.send(result)
+            // if(!result){
+            //     throw createError(404,"Restaurant does not exist.")
+            // }
+            // res.send({
+            //     Status :'SUCCESSFULL',
+            //     Message: 'successfully deleted information ',
+            //     //Data: result
+ 
+            //  })
+        } catch (error) {
+            if(error instanceof Mongoose.CastError){
+                next(createError(400,"Invalid Restaurant id"))
+                return
+            }
+            next(error)
+        }
+        // res.send("deleting a single product ")
+    },
+
 }
