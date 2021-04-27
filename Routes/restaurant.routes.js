@@ -10,7 +10,7 @@ app.use(express.json())
 router.get('/Restaurant/get_Restaurant',token,db.getAllRestaurant)
 
 //get table from Restaurant 
-router.post('/Restaurant/table_availability',db.checkTable)
+router.post('/Restaurant/table_availability',token,db.checkTable)
 
 //create new Restaurant
 router.post('/Restaurant/new_Restaurant',token, db.createRestaurant)

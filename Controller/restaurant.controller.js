@@ -119,20 +119,20 @@ module.exports = {
     checkTable:async (req,res,next)=>{
     
         try {
-            // const table_name = req.params.table_name
+            const table_name = req.body.table_name
             const id = req.body.id
-            const result = await Restaurant.findOne({_id:id},{list_table:"t1"})
-            console.log(result);
-            res.send(result)
-            // if(!result){
-            //     throw createError(404,"Restaurant does not exist.")
-            // }
-            // res.send({
-            //     Status :'SUCCESSFULL',
-            //     Message: 'successfully deleted information ',
-            //     //Data: result
+            const result = await Restaurant.findOne({_id:id},{list_table:table_name})
+            // console.log(result);
+            // res.send(result)
+            if(!result){
+                throw createError(404,"Table does not exist Restaurant.")
+            }
+            res.send({
+                Status :'SUCCESSFULL',
+                Message: result.list_table[0]+' table allowcated you ',
+                Data: 1
  
-            //  })
+             })
         } catch (error) {
             if(error instanceof Mongoose.CastError){
                 next(createError(400,"Invalid Restaurant id"))
