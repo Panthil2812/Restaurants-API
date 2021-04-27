@@ -69,7 +69,7 @@ module.exports = {
            newQuery.password = cry.encrypt(req.body.password)
            newQuery.updated_date = new Date(); 
             // console.log(newQuery)
-            const result = await User.findOneAndUpdate({ _id:id,email:req.body.email,d_flag:false},newQuery,option)
+            const result = await User.findOneAndUpdate({_id:id,email:req.body.email,d_flag:false},newQuery,option)
             if(!result){
                 throw createError(404,"User does not exist.")
             }
