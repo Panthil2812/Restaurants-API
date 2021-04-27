@@ -61,15 +61,15 @@ module.exports = {
     //update user data
     updateUser:async(req,res,next)=>{
         try {
-           const id = req.body._id
-           console.log(id);
+        //    const id = req.body._id
+        //    console.log(id);
             let newQuery = JSON.parse(JSON.stringify(req.body));
             
            const option = {new : true}
            newQuery.password = cry.encrypt(req.body.password)
            newQuery.updated_date = new Date(); 
             // console.log(newQuery)
-            const result = await User.findOneAndUpdate({_id:id,email:req.body.email,d_flag:false},newQuery,option)
+            const result = await User.findOneAndUpdate({email:req.body.email,d_flag:false},newQuery,option)
             if(!result){
                 throw createError(404,"User does not exist.")
             }
