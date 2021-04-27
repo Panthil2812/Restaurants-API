@@ -61,7 +61,8 @@ module.exports = {
     //update user data
     updateUser:async(req,res,next)=>{
         try {
-           const id = req.body._id 
+           const id = req.body._id
+           console.log(id);
             let newQuery = JSON.parse(JSON.stringify(req.body));
             
            const option = {new : true}

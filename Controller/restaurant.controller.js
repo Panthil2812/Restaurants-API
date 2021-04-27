@@ -121,15 +121,15 @@ module.exports = {
         try {
             const table_name = req.body.table_name
             const id = req.body.id
-            const result = await Restaurant.findOne({_id:id},{list_table:table_name})
-            // console.log(result);
-            // res.send(result)
-            if(!result){
-                throw createError(404,"Table does not exist Restaurant.")
+            const result = await Restaurant.findOne({_id:id})
+            const table_avalible = result.list_table.includes(table_name)
+            
+            if(!table_avalible){
+                throw createError(404,"Table does not exist in Restaurant.")
             }
             res.send({
                 Status :'SUCCESSFULL',
-                Message: result.list_table[0]+' table allowcated you ',
+                Message: table_name +' table allowcated you ',
                 Data: 1
  
              })
