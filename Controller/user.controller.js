@@ -64,13 +64,13 @@ module.exports = {
         //    const id = req.body._id
         //    console.log(id);
             console.log(req.body);
-            // let newQuery = JSON.parse(JSON.stringify(req.body));
+            let newQuery = JSON.parse(JSON.stringify(req.body));
             
             const option = {new : true}
-            req.body.password = cry.encrypt(req.body.password)
-            req.body.updated_date = new Date(); 
-            console.log(req.body)
-            const result = await User.findOneAndUpdate({email:req.body.email,d_flag:false},req.body,option)
+            newQuery.password = cry.encrypt(req.body.password)
+            newQuery.updated_date = new Date(); 
+            console.log(newQuery)
+            const result = await User.findOneAndUpdate({email:req.body.email,d_flag:false},newQuery,option)
             if(!result){
                 throw createError(404,"User does not exist.")
             }
@@ -81,7 +81,7 @@ module.exports = {
             })
         } catch (error) {
             if(error instanceof Mongoose.CastError){
-                next(createError(400,result+"Invalid user email"+error))
+                next(createError(400,"Invalid user email id 123"))
                 return
             }
             next(error)
