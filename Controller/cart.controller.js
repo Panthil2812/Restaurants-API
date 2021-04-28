@@ -70,7 +70,15 @@ module.exports = {
                     {
                         throw createError(404, "Food does not exist.")
                     }
-                    const topping_no = (req.body.toppings_id).split(',')
+                    
+                    if(req.body.toppings_id != ''){
+                        
+                        var topping_no = (req.body.toppings_id).split(',')
+                    }else{
+                        
+                        var topping_no = [];
+                    }
+                    
                     const topping_arr = []
                     let total_topping = 0
                     for (i = 0; i < topping_no.length; i++)
