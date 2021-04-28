@@ -82,7 +82,7 @@ module.exports = {
             })
         } catch (error) {
             if(error instanceof Mongoose.CastError){
-                next(createError(400,"Invalid user email id"))
+                next(createError(400,error))
                 return
             }
             next(error)
