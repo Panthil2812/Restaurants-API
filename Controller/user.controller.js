@@ -64,8 +64,8 @@ module.exports = {
             const id = req.params.id
         //    console.log(id);
             console.log(req.body);
-            // let newQuery = JSON.parse(JSON.stringify(req.body));
-            let newQuery = req.body;
+            let newQuery = JSON.parse(JSON.stringify(req.body));
+            // let newQuery = req.body;
             
             const option = {new : true}
             newQuery.password = cry.encrypt(req.body.password)
