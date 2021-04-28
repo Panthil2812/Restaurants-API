@@ -18,7 +18,7 @@ router.get('/users/fetch_users/:id',token,db.findUserById)
 router.post('/authorise/login', db.findUser)
 
 //UPDATA BY ID 
-router.post('/users/update_user',token,db.updateUser)
+router.post('/users/update_user/:id',token,db.updateUser)
 
 //change password by user id
 router.post('/authorise/change_password',token, db.changePassword)

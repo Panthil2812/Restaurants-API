@@ -61,16 +61,17 @@ module.exports = {
     //update user data
     updateUser:async(req,res,next)=>{
         try {
-        //    const id = req.body._id
+            const id = req.params.id
         //    console.log(id);
             console.log(req.body);
-            let newQuery = JSON.parse(JSON.stringify(req.body));
+            // let newQuery = JSON.parse(JSON.stringify(req.body));
+            let newQuery = req.body;
             
             const option = {new : true}
             newQuery.password = cry.encrypt(req.body.password)
             newQuery.updated_date = new Date(); 
             console.log(newQuery)
-            const result = await User.findOneAndUpdate({email:req.body.email,d_flag:false},newQuery,option)
+            const result = await User.findOneAndUpdate({_id:id,d_flag:false},newQuery,option)
             if(!result){
                 throw createError(404,"User does not exist.")
             }
@@ -81,7 +82,7 @@ module.exports = {
             })
         } catch (error) {
             if(error instanceof Mongoose.CastError){
-                next(createError(400,"Invalid user email id 123"))
+                next(createError(400,"Invalid user email id"))
                 return
             }
             next(error)
