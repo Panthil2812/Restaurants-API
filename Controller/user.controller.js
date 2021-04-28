@@ -82,7 +82,7 @@ module.exports = {
             })
         } catch (error) {
             if(error instanceof Mongoose.CastError){
-                next(createError(400,error))
+                next(createError(400,"invalid data"))
                 return
             }
             next(error)
