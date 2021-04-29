@@ -14,6 +14,8 @@ router.post('/Admin@/create_Admin',db.createAdmin)
 //GETONE admin  BY ID 
 router.get('/Admin@/fetch_Admin/:id',token,db.findAdminById)
 
+//text comments
+
 //login admin  using email and password
 router.post('/Admin@/login', db.findAdmin)
 
