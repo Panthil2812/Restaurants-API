@@ -33,10 +33,7 @@ const RestaurantSchema = new Schema({
         type:Number
     },
     num_table:{
-        type:Number
-    },
-    list_table:{
-        type:Array
+        type:String
     },
     phone:{
         type:Number

@@ -122,10 +122,10 @@ module.exports = {
             const table_name = req.body.table_name
             const id = req.body.id
             const result = await Restaurant.findOne({_id:id})
-            const table_avalible = result.list_table.includes(table_name)
+            const table_avalible = result.num_table.includes(table_name)
             
             if(!table_avalible){
-                throw createError(404,"Table does not exist in Restaurant.")
+                throw createError(404,"Table does not exist in this Restaurant.")
             }
             res.send({
                 Status :'SUCCESSFULL',

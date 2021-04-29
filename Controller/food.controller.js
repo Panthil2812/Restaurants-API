@@ -94,14 +94,18 @@ module.exports = {
     searchFood:async (req,res,next)=>{
         const id = req.body.category_id
         let arr = id.split(','); 
-       
+        if(arr[0] != ''){
+            var filter = {
+                category_id: {"$in":arr}
+            }
+        }else{
+            var filter = {}
+        }
+        console.log(filter);
         try
         {
-            var result = await Food.find({ category_id: {"$in":arr}},{__v:0})
-            if(result == ""){
-                console.log("in if condition");
-                var result = await Food.find({},{__v:0})
-            }
+            var result = await Food.find(filter,{__v:0})
+            
             // console.log(student)
             if(!result){
                 throw createError(404,"Food does not exist.")
