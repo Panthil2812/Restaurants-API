@@ -120,7 +120,7 @@ module.exports = {
                     res.send({
                         Status: 'SUCCESSFULL',
                         Message: 'successfully added information in Cart',
-                        Data: result
+                        Data: 1
                     })
                 } catch (error)
                 {
@@ -138,12 +138,19 @@ module.exports = {
                 try
                 {
                 
-                    const food_data = await Food.findOne({ _id: food_id })
+                    const food_data = await Food.findOne({ _id: food_id});
                     if (!food_data)
                     {
-                        throw createError(404, "Food does not exist.")
+                        throw createError(404, "Food does not 123 exist.")
                     }
-                    const topping_no = (req.body.toppings_id).split(',')
+                    if(req.body.toppings_id != ''){
+                        
+                        var topping_no = (req.body.toppings_id).split(',')
+                    }else{
+                        
+                        var topping_no = [];
+                    }
+
                     const topping_arr = []
                     let total_topping = 0
                     for (i = 0; i < topping_no.length; i++)
