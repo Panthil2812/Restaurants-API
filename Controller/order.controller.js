@@ -105,7 +105,8 @@ module.exports = {
                           }
                           const insert = new Order(insert_Data)
                         const ans = await insert.save()
-                        await Cart.deleteOne({user_id:id})
+                        const deleted = await Cart.deleteMany({user_id:id})
+                        console.log(deleted);
                           res.send({
                               Status: 'SUCCESSFULL',
                               Message: 'successfully added information in Cart',

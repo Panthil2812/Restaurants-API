@@ -101,7 +101,7 @@ module.exports = {
         }else{
             var filter = {}
         }
-        console.log(filter);
+        
         try
         {
             var result = await Food.find(filter,{__v:0})

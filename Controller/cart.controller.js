@@ -78,6 +78,8 @@ module.exports = {
                         
                         var topping_no = [];
                     }
+
+                    console.log(topping_no);
                     
                     const topping_arr = []
                     let total_topping = 0
@@ -118,7 +120,7 @@ module.exports = {
                     res.send({
                         Status: 'SUCCESSFULL',
                         Message: 'successfully added information in Cart',
-                        Data: 1
+                        Data: result
                     })
                 } catch (error)
                 {
